@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'Warbler';
+    src: url('./WarblerVariable.woff2') format('woff2-variations');
+
+    font-weight: 400 700; /* default: 400 */
+    font-style: normal;
+    /* opsz: 15 96; default 15 */
+}
+@font-face {
+    font-family: 'Warbler';
+    src: url('./WarblerVariable-Italic.woff2') format('woff2-variations');
+
+    font-weight: 400 700; /* default: 400 */
+    font-style: italic;
+    /* opsz: 15 96; default 15 */
+}

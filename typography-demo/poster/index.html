@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>State Parks Poster</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Goudy+Bookletter+1911&family=Kapakana:wght@300..400&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="A poster for state parks">
+
+  </head>
+  <body>
+              <section class="poster" id="state-parks-poster">
+                <style>
+                  
+                  .poster {
+                    container-type: inline-size;
+                    position: relative;
+                    transition: all .2s ease-in-out;
+                  }
+                  .poster:focus-within {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    height: 100vh;
+                    width: 100vw;
+                  }
+                  .poster__content {
+                    background-color: #000000;
+                    color: #ffffff;
+                    padding: 5cqi 5cqw;
+                    text-align: center;
+                    display: grid;
+                    grid-auto-flow: row;
+                  }
+                  .poster__title {
+                    font-family: "Goudy Bookleter 1911";
+                    text-align: center;
+                    font-size: 5.5cqw;
+                    text-transform: uppercase;
+                  }
+                  .poster__title--script {
+                    font-family: "Kapakana";
+                    font-size: 2em;
+                    text-transform: none;
+                  }
+                  .poster__title--smaller {
+                    font-size: .75em;
+                  }
+                  .poster__subtitle {
+                    font-family: "Playfair Display";
+                    font-size: 5cqw;
+                    font-style: italic;
+                    font-weight: 900;
+                    line-height: 3;
+                    text-align: justify;
+                    margin: 1em 5cqw;
+                  }
+                  .poster__image-container {
+                    margin: 0 5cqw;
+                    padding: 0;
+                  }
+                  .poster__image-container img {
+                    width: 100%;
+                    max-width: 100%;
+                    height: auto;
+                  }
+                  @container (min-width: 410px) {
+                    .poster__content {
+                      grid-auto-flow: column;
+                      grid-template-columns: 1fr 3fr 1fr;
+                    }
+                    .poster__title {
+                      font-size: 4.5cqw;
+                      line-height: 1;
+                      writing-mode: sideways-lr;
+                      margin: 0;
+                    }
+                    .poster__title--script {
+                      font-size: 2em;
+                      text-transform: none;
+                      display: block;
+                    }
+                    .poster__image-container {
+                      margin: 0;
+                      padding: 0;
+                    }
+                    .poster__subtitle {
+                      align-self: center;
+                      font-size: 3cqw;
+                      line-height: 2;
+                      text-align: left;
+                      margin: 1em 0 1em 2cqw;
+                    }
+                  }
+                  .expander-button {
+                    position: absolute;
+                    bottom: 1cqw;
+                    right: 1cqh;
+                  }
+                  .poster:focus-within .expander-button { 
+                    opacity: 0;
+                  }
+              </style>
+                <div class="poster__content">
+                  <h1 class="poster__title"><span class="poster__title--script">State Parks</span> <span class="poster__title--smaller">for</span> Recreation</h1>
+                  <figure class="poster__image-container">
+                    <img src="./images/poster-image.svg" alt="Scenic view of a state park with mountains and trees" class="poster__image">
+                  </figure>
+                  <p class="poster__subtitle">hiking fishing riding picknicking boating swimming camping skiing</p>
+                  <button id="togglePosterFocus" class="expander-button">↔</button>
+                </div>
+                <script>
+                  document.getElementById("togglePosterFocus").addEventListener("click", () => {
+                    document.getElementById("togglePosterFocus").focus();
+                  });
+                </script>
+              </section>
+  </body>
+</html>

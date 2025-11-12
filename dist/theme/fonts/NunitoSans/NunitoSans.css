@@ -1,0 +1,22 @@
+@font-face {
+	font-family: 'Nunito Sans';
+	src: url('./NunitoSans-Variable.woff2') format('woff2-variations');
+
+	font-weight: 200 1000; /* default: 200 */
+  font-stretch: 75 125; /* default: 100 */
+	font-style: normal; 
+	/* opsz: 6 12; default 12 */
+  /* YTLC: 440 540; default 500 */
+  font-display: swap;
+}
+@font-face {
+	font-family: 'Nunito Sans';
+	src: url('./NunitoSans-Italic-Variable.woff2') format('woff2-variations');
+
+	font-weight: 200 1000; /* default: 200 */
+  font-stretch: 75 125; /* default: 100 */
+	font-style: italic; 
+	/* opsz: 6 12; default 12 */
+  /* YTLC: 440 540; default 500 */
+  font-display: swap;
+}

@@ -1,0 +1,748 @@
+/**
+ * Curiosity in Design theme for reveal.js. 
+ *
+ * By Jason Pamental rwt.io
+ */
+
+
+// Default mixins and settings -----------------
+@use "sass:color";
+@import "../template/mixins";
+@import "../template/settings";
+// ---------------------------------------------
+
+
+// Include theme-specific fonts
+@import url(../fonts/warbler/warbler.css);
+@import url(../fonts/gimlet-sans/gimlet-sans.css);
+@import url(../fonts/NunitoSans/NunitoSans.css);
+@import url(../fonts/job-clarendon/JobClarendonWide.css);
+
+
+// Override theme settings (see ../template/settings.scss)
+$backgroundColor: #0a0a0a;
+$blockMargin: 20vh;
+
+$mainColor: #fff;
+$headingColor: #fff;
+
+$mainFontSize: 42px;
+$mainFont: 'Warbler', 'Times New Roman', Georgia, serif;
+$headingFont: 'Job Clarendon Wide', 'Times New Roman', Georgia, serif;
+$sansFont: 'Gimlet Sans', Verdana, sans-serif;
+$headingTextShadow: none;
+$headingLetterSpacing: normal;
+$headingTextTransform: none;
+$headingFontWeight: 600;
+$linkColor: #42affa;
+$linkColor: #eaeaea;
+$linkColorHover: #ffffff;
+$selectionBackgroundColor: rgba( $linkColor, 0.75 );
+
+$heading1Size: 2.25em;
+$heading2Size: 1em;
+$heading3Size: 1.1em;
+$heading4Size: 1.0em;
+
+// Change text colors against light slide backgrounds
+@include light-bg-text-color(#222);
+
+
+// Theme template ------------------------------
+@import "../template/theme";
+// ---------------------------------------------
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body[data-speaker-layout="tall"] #speaker-controls {
+  padding-top: 40px;
+  top: 0;
+  left: 55%;
+  width: 45%;
+  height: 100%;
+  font-size: 1.25vw;
+}
+
+.speaker-controls-notes {
+  .value {
+    font-size: 1vw;
+  }
+}
+
+.reveal {
+  max-height: 56.25vw;
+  .fragment {
+    display: inline-block;
+  }
+  .slides {
+    text-align: left;
+    section {
+      width: 100vw;
+      height: 100%;
+    }
+  }
+
+  .slide {
+    //background: linear-gradient(275deg, hsl(233, 28%, 11%), hsl(233,15%, 24%));
+    --h1: 233;
+    --h2: 233;
+    --s1: 28%;
+    --s2: 15%;
+    --l1: 11%;
+    --l2: 24%;
+    --a1: .1;
+    --a2: .05;
+    --s: 3.5vw; /* control the size*/
+    --c1: hsla(var(--h1), var(--s1), var(--l1),var(--a1));
+    --c2: hsla(var(--h2), var(--s2), var(--l2),var(--a2));
+    
+    background:
+    repeating-conic-gradient(var(--c1) 0 25%,#0000 0 50%)
+       0 0/calc(4*var(--s)) calc(2*var(--s)),
+      conic-gradient(#0000 50%,var(--c2) 0)
+       calc(var(--s)/2) 0/calc(2*var(--s)) 1%,
+      radial-gradient(var(--c2) 70%,var(--c1) 72%)
+       0 0/var(--s) var(--s),
+    linear-gradient(275deg, hsl(var(--h1), var(--s1), var(--l1)), hsl(var(--h2),var(--s2), var(--l2)));
+    transition: background 0.2s ease-in-out;
+    &[data-background-image*="dist"] {
+      background: unset;
+    }
+  }
+
+  .contents {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: 100%;
+    justify-content: center;
+    position: relative;
+    padding-left: 7.5vw;
+    &.lower {
+      justify-content: end;
+      padding-bottom: 3.5vw;
+    }
+  }
+
+  .unrefined * {
+    hanging-punctuation: unset;
+    text-wrap: unset;
+    font-variation-settings: 'opsz' 15;
+  }
+
+    /* general code cue styles */
+  .code-cue {
+    position: absolute;
+    bottom: 1vh;
+    right: 0;
+    transition: all 2s ease-in-out;
+    width: 44vw;
+    z-index: 99;
+    &.visible:not(.current-fragment) {
+      opacity: 0 !important;
+    }
+  }
+
+  h1 {
+    font-size: 6vw;
+    hanging-punctuation: first;
+    line-height: 1.15;
+    margin-block-start: 0;
+    margin-block-end: 0.75vh;
+    max-width: 85vw;
+    text-wrap: balance;
+    text-shadow: 
+      2px 2px .5em rgba(0, 0, 0, 0.85), 
+      1px 1px 1px rgba(0, 0, 0, 0.65);
+    transition: all 0.2s ease-in-out;
+    font-variant-ligatures: common-ligatures discretionary-ligatures;
+    &.smaller {
+      font-size: 4.75vw;
+    }
+  }
+
+  h2 {
+    font-size: 3.25vw;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.4;
+    margin-block-start: 0;
+    margin-block-end: 0.75vh;
+    max-width: 85vw;
+    text-wrap: balance;
+    text-shadow: 
+      2px 2px .5em rgba(0, 0, 0, 0.85), 
+      1px 1px 1px rgba(0, 0, 0, 0.65);
+    strong {
+      font-weight: 625;
+    }
+  }
+
+  h3 {
+    font-family: $sansFont;
+    font-style: normal;
+    font-size: 1.75vw;
+    font-weight: 375;
+    font-variation-settings: 'opsz' 12;
+    margin-block-start: 0;
+    margin-block-end: 1vh;
+    max-width: 85vw;
+    text-shadow: 
+      2px 2px .5em rgba(0, 0, 0, 0.85), 
+      1px 1px 1px rgba(0, 0, 0, 0.65);
+  }
+
+  h4 {
+    font-family: $sansFont;
+    font-size: 1.5vw;
+    font-weight: 375;
+    font-variation-settings: 'opsz' 12, 'ital' .65;
+    max-width: 85vw;
+    text-shadow: 
+      2px 2px .5em rgba(0, 0, 0, 0.85), 
+      1px 1px 1px rgba(0, 0, 0, 0.65);
+  }
+
+  p,
+  li {
+    font-family: $sansFont;
+    font-size: 1.75vw;
+    font-weight: 375;
+    font-variation-settings: 'opsz' 12;
+    text-shadow: 
+      2px 2px .5em rgba(0, 0, 0, 0.85), 
+      1px 1px 1px rgba(0, 0, 0, 0.65);
+  }
+
+  ol,
+  ul {
+    margin-left: 2.5vw;
+  }
+
+  img {
+    width: 100%;
+      align-items: center;
+    height: auto;
+    max-width: 100%;
+    display: block;
+    margin: 0;
+  }
+
+  a {
+    text-decoration: underline;
+    text-decoration-skip: ink;
+    text-decoration-thickness: 0.05em;
+    text-decoration-color: rgba(255,255,255,.5);
+    &:hover,
+    &:focus {
+      text-decoration-color: rgba(255,255,255,1);
+      text-decoration-thickness: 0.1em;
+    }
+  }
+
+  .credit {
+    position: absolute;
+    bottom: 2.5vh;
+    left: 7.5vw;
+    font-family: $sansFont;
+    font-size: 1vw;
+    font-weight: 425;
+    font-variation-settings: 'opsz' 12, 'ital' .65;
+  }
+
+  .iframe {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    margin-top: 5vh;
+    justify-content: center;
+  }
+  
+  .viewport {
+    height: 90vh;
+    width: 100%;
+    border-radius: 2rem;
+    transition: width 0.2s ease-in-out;
+    &.mobile {
+      width: 28%;
+    }
+  }
+  .full .viewport {
+    width: 100%;
+  }
+  .viewport.three-fourths  {
+    width: 75%;
+  }
+  .mobile .viewport.three-fourths  {
+    width: 400px;
+  }
+  .mobile.full .viewport.three-fourths  {
+    width: 80%;
+  }
+
+
+  .stat-grid {
+    max-width: 90vw;
+    margin: 2vh 0;
+    padding: 2vh 1vw;
+    border-radius: 1rem;
+    background-color: rgba(0,0,0,0.15);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    font-family: $sansFont;
+    label {
+      font-size: 2vw;
+    }
+    .value {
+      color: #6ca71a;
+      font-size: 6vw;
+      font-weight: 900;
+      .unit {
+        font-size: 2vw;
+        font-weight: 400;
+      }
+    }
+    > div {
+      display: grid;
+      grid-auto-flow: row;
+    }
+
+  }
+
+  .visual {
+    max-width: 85vw;
+  }
+
+  .code pre {
+    font-size: 2.85vw;
+    width: 100%;
+    overflow-x: auto;
+    scrollbar-color: navy;
+  }
+
+  .brian {
+    background: linear-gradient(275deg, hsl(6, 96%, 24%), hsl(6, 43%, 12%));
+  }
+
+  .erik {
+    background: linear-gradient(275deg, hsl(190, 96%, 24%), hsl(190, 43%, 12%));
+  }
+
+  .djr {
+    background: linear-gradient(275deg, hsl(221, 96%, 24%), hsl(221, 43%, 12%));
+  }
+
+  .doug {
+    background: linear-gradient(275deg, hsl(97, 96%, 24%), hsl(97, 43%, 12%));
+  }
+
+  .bottom-right {
+    position: absolute;
+    display: flex;
+    justify-items: center;
+    right: 0;
+    bottom: 0;
+    width: 45%;
+    align-content: end;
+  }
+
+  .center-right {
+    position: absolute;
+    display: flex;
+    justify-items: center;
+    right: 0;
+    bottom: 0;
+    width: 45%;
+    height: 100%;
+    align-content: end;
+    .frame {
+      width: unset;
+    }
+  }
+
+  .frame {
+    width: 35vw;
+  }
+  .title {
+    background: 
+    linear-gradient(275deg, hsla(250, 28%, 11%,.45), hsla(250,11%, 28%,.05)) 65%,
+      url('../images/henry_and_leo.jpg');
+      background-size: cover;
+      background-position-y: center;
+    .contents {
+      justify-content: end;
+      h1 {
+        font-size: 5vw;
+      }
+      h4 {
+        padding-bottom: 2.5vh;
+      }
+    }
+  }
+
+  .cat {
+    width: 10vw;
+    position: absolute;
+    bottom: -20vh;
+    right: 10vw;
+    transition: bottom .15s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  }
+  .cat-pop .cat {
+    bottom: -3vh;
+  }
+
+  .iron {
+    width: 10vw;
+    position: absolute;
+    bottom: -20vh;
+    right: 13vw;
+    transition: bottom .15s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+  }
+  .hyphenate .iron {
+    bottom: -3vh;
+  }
+
+  .intellectual-curiosity {
+    background: 
+    linear-gradient(275deg, hsla(6, 96%, 24%,.85), hsla(6, 43%, 12%, .75)),
+      url('../images/Dougs_obsession.png');
+    background-size: cover;
+  }
+
+  .idle-curiosity {
+    background: 
+    linear-gradient(275deg, hsla(224, 96%, 24%,.65), hsla(224, 43%, 12%, .45)),
+      url('../images/Idle_Henry.jpeg');
+    background-size: cover;
+    background-position-y: bottom;
+    h1 {
+      font-size: 4vw;
+    }
+    h2 {
+      font-size: 2.5vw;
+    }
+  }
+
+  .morbid-curiosity {
+    background: 
+    linear-gradient(275deg, hsla(145, 96%, 24%,.65), hsla(145, 43%, 12%, .45)),
+      url('../images/morbid_lambys.jpeg');
+    background-size: cover;
+    background-size: 120vw;
+    background-position-y: -25vh;
+    h1 {
+      font-size: 4vw;
+    }
+    h2 {
+      font-size: 2.5vw;
+    }
+  }
+
+  .just,
+  .really {
+    --s1: 20%;
+    --s2: 10%;
+  }
+
+  .neuro {
+    --h1: 14;
+    --h2: 119;
+    --s1: 16%;
+    --s2: 11%;
+  }
+
+  .my-take {
+    --h1: 125;
+    --h2: 165;
+    --s1: 68%;
+    --s2: 25%;
+    --l1: 5%;
+    --l2: 24%;
+  }
+
+  .vf-collie {
+    transition: all 1s ease-in-out;
+    .code-cue {
+      top: 1vh;
+      bottom: auto;
+      left: 0;
+      right: auto;
+      margin-top: 0;
+      pre {
+        margin-top: 0;
+      }
+    }
+    .variable_collies {
+      img {
+        margin-top: -12vh;
+        max-width: 100%;
+      }
+    }
+    div[class*="axis-"] {
+      color: #fff;
+      font-family: "Nunito Sans";
+      font-size: 4vw;
+      transition: all 2s ease-in-out;
+  
+    }
+    .axis-width1 {
+      font-stretch: 80%;
+      font-weight: 600;
+      opacity: 0;
+      text-align: center;
+      width: 12vw;
+      position: absolute;
+      top: 17vh;
+      left: 76.25vw;
+      z-index: 5;
+      .diagram-line {
+        width: 100%;
+        height: 1vh;
+        border-top: solid 2px #fff;
+        border-left: solid 2px #fff;
+        border-right: solid 2px #fff;
+      }
+    }
+    &.varcol-width .axis-width1 {
+      font-stretch: 150%;
+      opacity: 1;
+    }
+    .axis-width2 {
+      font-stretch: 100%;
+      font-weight: 400;
+      opacity: 0;
+      text-align: center;
+      width: 9vw;
+      position: absolute;
+      top: 28vh;
+      left: 39vw;
+      z-index: 5;
+      .diagram-line {
+        width: 100%;
+        height: 1vh;
+        border-top: solid 2px #fff;
+        border-left: solid 2px #fff;
+        border-right: solid 2px #fff;
+      }
+    }
+    &.varcol-width .axis-width2 {
+      font-stretch: 25%;
+      opacity: 1;
+    }
+    .axis-weight1 {
+      font-weight: 600;
+      opacity: 0;
+      text-align: center;
+      width: 15vw;
+      position: absolute;
+      top: 85vh;
+      left: 72vw;
+      z-index: 5;
+      .diagram-line {
+        position: absolute;
+        top: -1vh;
+        left: 0;
+        width: 100%;
+        height: 1vh;
+        border-bottom: solid 2px #fff;
+        border-left: solid 2px #fff;
+        border-right: solid 2px #fff;
+      }
+    }
+    &.varcol-weight .axis-weight1 {
+      font-weight: 1000;
+      opacity: 1;
+    }
+    .axis-weight2 {
+      font-weight: 600;
+      opacity: 0;
+      text-align: center;
+      width: 12vw;
+      position: absolute;
+      top: 85vh;
+      left: 38vw;
+      z-index: 5;
+      .diagram-line {
+        position: absolute;
+        top: -1vh;
+        left: 0;
+        width: 100%;
+        height: 1vh;
+        border-bottom: solid 2px #fff;
+        border-left: solid 2px #fff;
+        border-right: solid 2px #fff;
+      }
+    }
+    &.varcol-weight .axis-weight2 {
+      font-weight: 100;
+      opacity: 1;
+    }
+    .axis-xheight1 {
+      font-variation-settings: 'YTLC' 450;
+      opacity: 0;
+      position: absolute;
+      top: 52vh;
+      left: 55vw;
+      z-index: 5;
+      .diagram-line {
+        position: absolute;
+        top: -25vh;
+        right: -2vw;
+        width: 1vw;
+        height: 60vh;
+        border-bottom: solid 2px #fff;
+        border-left: solid 2px #fff;
+        border-top: solid 2px #fff;
+      }
+    }
+    &.varcol-xheight .axis-xheight1 {
+      font-variation-settings: 'YTLC' 570;
+      opacity: 1;  
+    }
+    .axis-xheight2 {
+      font-variation-settings: 'YTLC' 550;
+      opacity: 0;
+      position: absolute;
+      top: 58vh;
+      left: 21vw;
+      z-index: 5;
+      .diagram-line {
+        position: absolute;
+        top: -20vh;
+        right: -2vw;
+        width: 1vw;
+        height: 45vh;
+        border-bottom: solid 2px #fff;
+        border-left: solid 2px #fff;
+        border-top: solid 2px #fff;
+      }
+    }
+    &.varcol-xheight .axis-xheight2 {
+      font-variation-settings: 'YTLC' 416;
+      opacity: 1;  
+    }
+  
+  }
+  
+  .vf-collie2 {
+    .variable_collies2 {
+      img {
+        margin-top: -10vh;
+        max-width: 100%;
+      }
+    }
+    .axis-slant {
+      color: #fff;
+      font-family: "Nunito Sans";
+      font-size: 4vw;
+      font-style: normal;
+      transition: all 2s ease-in-out;
+      font-weight: 400;
+      opacity: 1;
+      text-align: center;
+      width: 12vw;
+      position: absolute;
+      top: 22vw;
+      left: 12.5vw;
+      z-index: 5;
+      .label {
+        padding-right: 2vw;
+      }
+      .diagram-line {
+        position: absolute;
+        top: -20vh;
+        right: 0;
+        width: 2px;
+        height: 30vh;
+        border-left: solid 2px #fff;
+        transition: all 1s ease-in-out;
+      }
+      .diagram-line2 {
+        position: absolute;
+        top: -20vh;
+        right: 0;
+        width: 2px;
+        height: 30vh;
+        border-left: solid 2px #fff;
+        transition: all 2s ease-in-out;
+        transform-origin: bottom right;
+      }
+    }
+    &.varcol-slant {
+      .axis-slant {
+        font-style: italic;
+      }
+      .diagram-line {
+        opacity: 0.6;
+      }
+      .diagram-line2 {
+          transform: rotate(28deg);
+          transform-origin: bottom right;
+      }
+    }
+  }
+  .sideways {
+    writing-mode: sideways-lr;
+    text-align: right;
+  }
+  .text-orientation-display {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    height: 100vh;
+    padding: 3vh 1.5vw;
+    h2 {
+      align-self: center;
+      justify-self: end;
+    }
+  }
+
+  .text-balance {
+    h1 {
+      width: 85vw;
+      text-wrap: unset;
+    }
+    &.balanced {
+      text-wrap: balance;
+    }
+    p {
+      text-wrap: unset;
+    }
+  }
+}
+
+.hanging-punctuation {
+  p {
+    max-width: 60ch;
+  }
+  &.hanging {
+      text-wrap: balanced;
+      hanging-punctuation: first allow-end last;
+      hyphens: auto;
+  }
+}
+
+
+.hyphenation {
+  p {
+    max-width: 17em;
+    font-size: 3vw;
+    text-wrap: unset;
+    margin-left: 15vw;
+  }
+  &.hyphenate {
+    p {
+      hyphens: auto;
+      word-break: break-word;
+    }
+  }
+}
+
+.thanks {
+  h1 {
+    font-size: 5.5vw;
+  }
+}

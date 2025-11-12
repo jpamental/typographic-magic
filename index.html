@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Typographic Curiosities</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/css/curiosity.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section class="slide title">
+					<div class="contents">
+						<h1>Typographic Curiosities</h1>
+						<h2>An exploration of performance and expression with type</h2>
+						<h3>Jason Pamental (@jpamental) | Principal Designer @ Chewy.com<br />
+							irrepressibly curious about almost everything</h3>
+						<h4>smashing conf NYC, 8 October 2025</h4>
+					</div>
+				</section>
+				<section class="slide" data-autoslide="2000">
+					<div class="contents">
+						<h1>Where are we going & why are there no cats?</h1>
+						<figure class="cat"><img src="./dist/theme/images/partycat.png" /></figure>
+					</div>
+					<div class="fragment" data-state="cat-pop" data-autoslide="false">
+          </div>
+
+					<aside class="notes">
+						<ul>
+							<li>How fast can we be?</li>
+							<li>How expressive can we be?</li>
+							<li>How responsive can we be?</li>
+							<li>Christine was on to something about design and developing</li>
+					</aside>
+				</section>
+				<section class="slide">
+					<div class="contents">
+						<h1>curiosity</h1>
+					<h2>[ kyoor-ee-os-i-tee ]</h2>
+					<ol>
+						<li>greek: <em>periergia</em></li>
+						<li>a strong desire to know about something</li>
+						<li>an unusual and interesting thing</li>
+					</ol>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>the truth is they inseparable</li>
+							<li>spent a lot of time thinking about curiosity and how it's impacted my career</li>
+							<li>web and digital design is a mix of design and tech</li>
+							<li>typography is an even weirder nexus of design and tech and psychology and perception</li>
+
+					</aside>
+				</section>
+				<section class="slide neuro">
+					<div class="contents">
+						<h1>Performance is the first visible aspect of design*</h1> 
+						<h2>give the browser a map & directions</h2>
+					</div>
+					<div class="credit">* thanks Brad</div>
+					<aside class="notes">
+						<ul>
+							<li>dns & loading hints</li>
+							<li>font optimization</li>
+							<li>fallback tuning and display: swap</li>
+							<li>don't forget image attributes & loading priority</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="slide">
+					<div class="iframe">
+						<iframe id="component-viewport" class="viewport full" src="./typography-demo/step-0/index.html">
+						</iframe>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>this starting point is pretty common</li>
+							<li>loading fonts from google</li>
+							<li>pasting in a line of code and moving on</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="slide">
+					<div class="contents">
+						<div class="stat-grid">
+							<div class="lcp">
+								<label>Largest contentful paint</label>
+								<div class="value">1.216<span class="unit">s</span></div>
+							</div>
+							<div class="lcp">
+								<label>Cumulative layout shift</label>
+								<div class="value">.023<span class="unit">s</span></div>
+							</div>
+							<div class="lcp">
+								<label>Total blocking time</label>
+								<div class="value">0.000<span class="unit">s</span></div>
+							</div>
+						</div>
+						<figure class="visual"><img src="./dist/theme/images/timelines/live-waterfall-googlefonts-static.png" /> </figure>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>so maybe not terrible, but a lot of room for improvement</li>
+							<li>not just objective performance, but also perceived performance</li>
+							<li>not just performance, but also aesthetics</li>
+							<li>because as humans we make near-instant judgements on quality and usefulness based on aesthetics</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="slide idle-curiosity" data-transition="fade">
+					<div class="contents">
+						<h1>idle curiosity</h1>
+						<h2>how much can I eat?</h2>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>perhaps a rhetorical question</li>
+							<li>but using idle time can make pages feel snappier</li>
+					</aside>
+				</section>
+				<section class="slide">
+					<div class="contents">
+						<h1>Be <em>pre</em>pared</h1> 
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>there are a few things we can do to improve the performance of our experience before anything hits the screen</li>
+							<li>think of this as the primer to Tim's talk from yesterday</li>
+							<li>if only our talks had a computed resolution. or parsed? </li>
+							<li>I declare I'm confused</li>
+							<li>and you could likely declare me invalid</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="slide">
+					<div class="contents">
+						<div class="code">
+<pre>
+&lt;link 
+ rel="preconnect" 
+ href="https://curious-typography-demo.netlify.app" 
+/&gt;
+</pre>
+						</div> 
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>Preconnecting warms up the connection, making it faster to ask for resources when we need them</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="slide">
+					<div class="contents">
+						<div class="code">
+<pre>
+&lt;link 
+ rel="preload" 
+ href="./assets/css/webfonts.css" 
+ as="style" 
+ fetchpriority="high" /&gt;
+
+&lt;link 
+ rel="preload" 
+ href="./assets/css/styles.css" 
+ as="style" 
+ fetchpriority="high" /&gt;
+</pre>
+						</div> 
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>preloading is just what it sounds like: loading resources before rendering the page</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="slide">
+					<div class="contents">
+						<div class="code">
+<pre>
+&lt;link 
+ rel="preload" 
+ href="./assets/fonts/NunitoSans/NunitoSans-Varia..."
+ as="font" 
+ fetchpriority="high" 
+ crossorigin /&gt;
+</pre>
+						</div> 
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>use sparingly!</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="slide">
+					<div class="contents">
+						<div class="code">
+<pre>
+&lt;link 
+ rel="prefetch" 
+ href="./assets/fonts/NunitoSans/NunitoSans-Ital..."
+ as="font" 
+ crossorigin /&gt;
+</pre>
+						</div> 
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>prefetch is in the middle: uses that warm connection to ask for a resource that might not be needed in the first 'paint'</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="slide">
+					<div class="contents">
+						<h1>Optimizing wisely</h1> 
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>Google Fonts</li>
+							<li>Optimized font files</li>
+							<li>Variable fonts</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="slide">
+					<div class="contents">
+
+						<figure class="visual"><img src="./dist/theme/images/timelines/live-waterfall-googlefonts-static-highlighted.png" /> </figure>
+						<figure class="visual"><img src="./dist/theme/images/timelines/live-waterfall-localfonts-var-highlighted.png" /> </figure>
+						<h2>* shorter bars are better</h2>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>Switched to self-hosted variable fonts from Google Fonts</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="slide">
+					<div class="contents">
+						<div class="code">
+<pre>
+@font-face {
+ font-family: 'Nunito Sans';
+ ...
+ font-display: swap;
+}
+<span class="fragment">@font-face {
+ font-family: 'Adjusted Arial Fallback';
+ src: local(Arial);
+ size-adjust: 100%;
+ ascent-override: normal;
+ descent-override: normal;
+ line-gap-override: 24%;
+}</span>
+</pre>
+						</div> 
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>be sure to set font-display: swap to get content on screen faster</li>
+							<li>you can fine-tune fallback fonts to minimize content shift</li>
+							<li>now let's talk about variable fonts</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="slide">
+					<div class="contents">
+
+						<figure class="visual"><img src="./dist/theme/images/nunito_variable.png" /></figure>
+						<h2>* more axes are better :)</h2>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>Nunito Sans has 4 axes to play with, giving us tons of flexibility</li>
+							<li>But it's always to show rather than tell, so...</li>
+						</ul>
+					</aside>
+				</section>
+        <section class="slide vf-collie">
+            <figure class="variable_collies">
+              <img src="dist/theme/images/variable_collies_2020.jpg" />
+            </figure>
+            <div class="axis-width1">
+              <div class="label">width</div>
+              <div class="diagram-line"></div>
+            </div>
+            <div class="axis-width2">
+              <div class="label">width</div>
+              <div class="diagram-line"></div>
+            </div>
+            <div class="axis-weight1">
+              <div class="label">weight</div>
+              <div class="diagram-line"></div>
+            </div>
+            <div class="axis-weight2">
+              <div class="label">weight</div>
+              <div class="diagram-line"></div>
+            </div>
+            <div class="axis-xheight1">
+              <div class="label">x-height</div>
+              <div class="diagram-line"></div>
+            </div>
+            <div class="axis-xheight2">
+              <div class="label">x-height</div>
+              <div class="diagram-line"></div>
+            </div>
+            <div class="fragment" data-state="varcol-width">
+            </div>
+            <div class="fragment" data-state="varcol-weight">
+            </div>
+             <div class="fragment" data-state="varcol-xheight">
+            </div>
+            <div class="resource-link">
+                https://variablefonts.io
+            </div>
+          </section>
+          <section class="vf-collie2">
+            <figure class="variable_collies2">
+              <img src="dist/theme/images/variable_collies_2020-2.jpg" />
+            </figure>
+            <div class="axis-slant">
+              <div class="label">slant</div>
+              <div class="diagram-line"></div>
+              <div class="diagram-line2"></div>
+            </div>
+            <div class="fragment" data-state="varcol-slant">
+          </div>
+          <div class="credit">
+              https://variablefonts.io
+          </div>
+        </section>
+				<section class="slide">
+					<div class="contents">
+						<div class="code">
+<pre>
+&lt;img
+ src="./assets/images/leo_lounging.webp.webp"
+ alt="Leo lounging around on his back"
+ width="500" 
+ height="439"
+ fetchpriority="high" /&gt;
+
+&lt;img 
+ src="./assets/images/henry_and_leo.jpg" 
+ alt="Leo with tiny puppy Henry" 
+ width="1000" 
+ height="621" 
+ loading="lazy" /&gt;
+</pre>
+						</div> 
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>don't forget about adding height and width for media to speed up page rendering</li>
+							<li>note also we're giving more hints about how we want the browser to handle loading priority</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="slide">
+					<div class="contents">
+						<div class="stat-grid">
+							<div class="lcp">
+								<label>Largest contentful paint</label>
+								<div class="value">1.123<span class="unit">s</span></div>
+							</div>
+							<div class="lcp">
+								<label>Cumulative layout shift</label>
+								<div class="value">.006<span class="unit">s</span></div>
+							</div>
+							<div class="lcp">
+								<label>Total blocking time</label>
+								<div class="value">0.000<span class="unit">s</span></div>
+							</div>
+						</div>
+						<figure class="visual"><img src="./dist/theme/images/timelines/live-waterfall-localfonts-var.png" /> </figure>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>Switched to variable fonts</li>
+							<li>Fonts optimized and served locally</li>
+							<li>Fallbacks tuned, display: swap enabled</li>
+							<li>Hints given to the browser to speed up rendering</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="slide morbid-curiosity" data-transition="fade">
+					<div class="contents">
+						<h1>morbid curiosity</h1>
+						<h2>how many is too many?</h2>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>so we've worked through how to load things quickly</li>
+							<li>what can we do to adapt our design based on device working with what we have already loaded?</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="slide neuro">
+					<div class="contents">
+						<h1>Resolution revolution</h1>
+						<h2>how responsive can we be?</h2> 
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>font size and line height scaling</li>
+							<li>work with weight and width</li>
+							<li>light and contrast modes</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="slide">
+					<div class="iframe">
+						<iframe id="component-viewport" class="viewport mobile" src="./typography-demo/step-2/index.html">
+						</iframe>
+					</div>
+          <div class="fragment " data-state="full">
+          </div>
+					<aside class="notes">
+						<ul>
+							<li>We're using clamp() to fluidly scale font-size and line-height</li>
+							<li>Using media queries to set the font width more narrowly on small screens</li>
+							<li>Tailoring font-weight for regular and bold weights that works well with the typeface and design</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="slide" data-transition="fade">
+					<div class="iframe">
+						<iframe id="component-viewport" class="viewport full" src="./typography-demo/step-2-dark/index.html">
+						</iframe>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>When contrast inverts, decrease weight of light text on dark backgrounds</li>
+							<li>I've actually used light-dark() to set this up too</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="slide">
+					<div class="contents">
+
+						<figure class="visual"><img src="./dist/theme/images/contrast_standard.png" /></figure>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>Handling increased contrast can sometimes be tricky</li>
+							<li>wait for it...</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="slide" data-transition="fade">
+					<div class="contents">
+
+						<figure class="visual"><img src="./dist/theme/images/contrast_increased.png" /></figure>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>done!</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="slide neuro">
+					<div class="contents">
+						<h1>Type is the clothes our words wear</h1> 
+						<h2>don’t stop at just getting them on the screen</h2>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>Just how expressive can we be?</li>
+							<li>text orientation</li>
+							<li>text flow & wrap</li>
+							<li>hyphenation & hanging punctuation</li>
+							<li>typeface axis customization</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="slide">
+					<div class="iframe">
+						<iframe id="component-viewport" class="viewport full" src="./typography-demo/step-0/index.html">
+						</iframe>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>Starting from static fonts</li>
+							<li>Adding more expressive flair</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="slide" data-transition="fade">
+					<div class="iframe">
+						<iframe id="component-viewport" class="viewport full" src="./typography-demo/step-2/index.html">
+						</iframe>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>Headings set wider and heavier</li>
+							<li>Font size and line height scaling with screen size</li>
+							<li>First line of text styled differently</li>
+							<li>Thin weight and hanging punctuation with pull quote</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="slide">
+					<div class="contents">
+						<div class="text-orientation-display">
+							<h1 class="sideways">Text orientation & visual friction</h1>
+							<h2>sometimes we need some intentional tension</h2> 
+						</div>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>Leveraging writing modes in CSS gives us accessible ways to still create visual interest</li>
+							<li>Mandatory callback to Jen Simmons' Labs site!</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="slide text-balance">
+					<div class="contents">
+						<h1>Text flow, wrap, and balance</h1> 
+					</div>
+          <div class="fragment " data-state="balanced">
+          </div>
+					<aside class="notes">
+						<ul>
+							<li>One thing we've never had the ability to control well is line breaks in blocks of copy</li>
+							<li>That has changed with text-wrap: balance</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="slide text-balance">
+					<div class="contents">
+							<p>Call me Leopold. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world. It is a way I have of driving off the spleen and regulating the circulation. </p>
+					</div>
+          <div class="fragment " data-state="balanced">
+          </div>
+					<aside class="notes">
+						<ul>
+							<li>Endless ink has been spilled by designers over the years railing against our inability to eliminate typographic orphans online</li>
+							<li>All gone with one line of CSS</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="slide hanging-punctuation">
+					<div class="contents">
+							<p class="mobile">“Call me Leopold.” Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world. It is a way I have of driving off the spleen and regulating the circulation. </p>
+					</div>
+          <div class="fragment " data-state="hanging">
+          </div>
+					<aside class="notes">
+						<ul>
+							<li>Soon, perhaps the affront of our inability to hang punctuation properly may too be a thing of the past</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="slide hyphenation">
+					<div class="contents">
+							<p>Call me Leopold. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world. It is a way I have of driving off the spleen and regulating the circulation. </p>
+					</div>
+					<figure class="iron"><img src="./dist/theme/images/iron.gif" /></figure>
+          <div class="fragment " data-state="hyphenate">
+          </div>
+					<aside class="notes">
+						<ul>
+							<li>hyphenation can help even out line length, especially on small screens</li>
+							<li>all of these things help us with <strong>ironing</strong> out the typographic details</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="slide neuro">
+					<div class="contents">
+						<h1>Reimagining an advertising artform</h1> 
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>when I was in school, I studied graphic design and printmaking</li>
+							<li>posters are the perfect synthesis</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="slide mobile">
+					<div class="iframe">
+						<iframe id="component-viewport" class="viewport three-fourths" src="./typography-demo/step-3/index.html">
+						</iframe>
+					</div>
+          <div class="fragment " data-state="full">
+          </div>
+					<aside class="notes">
+						<ul>
+							<li>Font-size and line-height scaling with clamp()</li>
+							<li>Width scaled with device size</li>
+							<li>Weight tailored to the typeface and design</li>
+						</ul>
+					</aside>
+				</section>
+				<section class="slide" data-transition="fade">
+					<div class="contents">
+						<h1>“a kind of aimless, witless tendency to pry into things that didn’t concern us”</h1>
+						<h2>Aristotle—according to British writer Philip Ball</h2>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li>turns out prying into things that don't concern us can be pretty beneficial</li>
+							<li>so let's stay curious, learn from one another, and build a more beautiful, usable web</li>
+					</aside>
+				</section>
+				<section class="slide thanks" data-background-image="dist/theme/images/sunrise_puppers.jpeg" data-transition="fade">
+					<div class="contents lower">
+						<h1>thank you</h1> 
+						<h3>slides: noti.st/jpamental/3AhnW9<br />
+						instagram, bluesky: @jpamental</h3>
+					</div>
+					<aside class="notes">
+						<ul>
+							<li></li>
+						</ul>
+					</aside>
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script src="dist/theme/js/curiosities.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				disableLayout: true,
+				hash: true,
+				progress: false,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'Gimlet Sans';
+    src: url('./GimletSansVariable.woff2') format('woff2-variations');
+
+    font-weight: 300 900; /* default: 300 */
+    font-style: normal italic; /* 0 1 default: 0 */
+    /* opsz: 7 36; default 36 */
+}

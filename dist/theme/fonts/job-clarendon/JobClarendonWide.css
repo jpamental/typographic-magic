@@ -1,0 +1,9 @@
+@font-face {
+	font-family: 'Job Clarendon Wide';
+	src: url('./JobClarendonWideVariable.woff2') format('woff2-variations');
+
+	font-weight: 1 900; /* default: 358 */
+  font-stretch: normal;
+	font-style: normal; 
+  font-display: swap;
+}

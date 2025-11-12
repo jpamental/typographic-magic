@@ -1,0 +1,432 @@
+/* Custom properties */
+
+:root {
+  --ui-bg-primary: #fcfcfb;
+  --ui-bg-gradient-end: #272710;
+  --ui-bg-primary-gradient: linear-gradient(150deg, var(--ui-bg-primary) 0%, var(--ui-bg-gradient-end) 100%);
+  --ui-bg-secondary: #151514;
+  --ui-bg-bright: #000000;
+
+  --text-primary: #121212;
+
+
+  --text-h1-size-min: 3rem;
+  --text-h1-size-max: 3.25rem;
+  --text-h1-line-height-min: 1.15em;
+  --text-h1-line-height-max: 1.25em;
+  --text-h1-weight: 875;
+  --text-h1-width: 120;
+  --text-h1-YTLC: 500;
+
+  --text-p-size-min: 1rem;
+  --text-p-size-max: 1.25rem;
+  --text-p-line-height-min: 1.4em;
+  --text-p-line-height-max: 1.5em;
+  --text-p-weight: 350;
+  --text-p-width: 100;
+  --text-p-YTLC: 525;
+
+  --product-text-h3-size: 0.925rem;
+  --product-text-h3-weight: 625;
+  --product-text-h3-width: 85;
+  --product-text-h3-line-height: 1.15;
+
+  --product-text-p-size: 0.875rem;
+  --product-text-p-weight: 350;
+  --product-text-p-width: 75;
+  --product-text-p-line-height: 1.25;
+}
+
+:root {
+  /* this has to be set to switch between light or dark */
+  color-scheme: light dark;
+
+  --light-bg: #fcfcfb;
+  --light-color: #121212;
+
+  --dark-bg: #121212;
+  --dark-color: #fcfcfb;
+}
+* {
+  background-color: light-dark(var(--light-bg), var(--dark-bg));
+  color: light-dark(var(--light-color), var(--dark-color));
+}
+
+.light {
+  /* forces light color-scheme */
+  color-scheme: light;
+}
+.dark {
+  /* forces dark color-scheme */
+  color-scheme: dark;
+}
+
+/* Responsive text properties */
+@media screen {
+  :root {
+    --text-h1-width: 100;
+    --text-p-width: 90;
+  }
+}
+@media screen and (min-width: 28em) {
+  :root {
+  --text-h1-width: 110;
+    --text-p-width: 95;
+  }
+}
+@media screen and (min-width: 47em) {
+  :root {
+    --text-h1-width: 120;
+    --text-p-width: 100;
+  }
+}
+.visually-hidden {
+  clip: rect(0 0 0 0); /* Legacy support for older browsers */
+  clip-path: inset(50%); /* Modern approach */
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+/* Reset */
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/* HTML elements */
+body {
+  background: var(--ui-bg-primary-gradient);
+  color: var(--text-primary);
+  font-family: "Nunito Sans", "Helvetica Neue", 'Adjusted Arial Fallback', 'Adjusted Verdana Fallback', Arial, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: clamp(var(--text-h1-size-min), 0.5833em + 0.6667vw, var(--text-h1-size-max));
+  line-height: clamp(var(--text-h1-line-height-min), 0.4217rem + 1.4533vw, var(--text-h1-line-height-max));
+  font-weight: var(--text-h1-weight);
+  font-stretch: calc(var(--text-h1-width) * 1%);
+  font-variation-settings: 'YTLC' var(--text-h1-YTLC);
+  margin: 0;
+  padding: 0;
+  text-wrap: balance;
+}
+
+p {
+  font-size: clamp(var(--text-p-size-min), 0.5833em + 0.6667vw, var(--text-p-size-max));
+  line-height: clamp(var(--text-p-line-height-min), 0.4217rem + 1.4533vw, var(--text-p-line-height-max));
+  font-weight: var(--text-p-weight);
+  font-stretch: calc(var(--text-p-width) * 1%);
+  font-variation-settings: 'YTLC' var(--text-p-YTLC);
+  max-width: 80ch;
+  margin: 0;
+  padding: 0;
+  text-wrap: balance;
+}
+
+* + p {
+  margin-top: 1ch;
+}
+
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+* + figure {
+  margin-top: 1rem;
+}
+
+img {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Typographic details */
+
+.content-layout__content > p:first-of-type:first-line {
+  font-weight: 775;
+  font-variant-caps: all-small-caps;
+}
+
+blockquote {
+  margin: 0;
+  padding: 0
+}
+
+p + blockquote {
+  margin-top: 1ch;
+}
+
+blockquote p {
+  font-size: 2.75rem;
+  font-weight: 250;
+  font-style: oblique;
+  font-stretch: 85%;
+  line-height: 1.15;
+  hanging-punctuation: first allow-end last;
+}
+
+blockquote p::before {
+  content: "“";
+}
+
+blockquote p::after {
+  content: "”";
+}
+
+.demo-title {
+  writing-mode: sideways-lr;
+  color: hsla(0, 0%, 50%, 0.175);
+  float: left;
+  font-size: 8.5vh;
+  font-stretch: 85%;
+  font-weight: 925;
+  position: fixed;
+  z-index: -1;
+}
+
+/* Product typography */
+.card h3 {
+  font-size: var(--product-text-h3-size);
+  font-stretch: calc(var(--product-text-h3-width) * 1%);
+  font-weight: var(--product-text-h3-weight);
+  line-height: var(--product-text-h3-line-height);
+}
+
+.card p {
+  font-size: var(--product-text-p-size);
+  font-stretch: calc(var(--product-text-p-width) * 1%);
+  font-weight: var(--product-text-p-weight);
+  line-height: var(--product-text-p-line-height);
+}
+
+/* Layout */
+
+.content-layout__content {
+  max-width: min(85ch, 90vw);
+  margin: 0 auto;
+  padding: 4rem 0;
+}
+
+.content-layout__cards {
+  clear: both;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  max-width: 94vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media screen and (min-width: 38rem) {
+  .content-layout__cards {
+    grid-template-columns: 1fr 1fr;
+    margin-left: -5vw;
+    margin-right: -5vw;
+  }
+}
+
+@media screen and (min-width: 75rem) {
+  .content-layout__cards {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    margin-left: -10vw;
+    margin-right: -10vw;
+  }
+}
+
+/* Components */
+
+.buy-now {
+  background-color: var(--ui-bg-bright);
+  border-radius: 0.5rem;
+  border: solid 1px var(--ui-bg-gradient-end);
+  width: 10rem;
+  float: right;
+  margin-left: 1rem;
+  margin-right: -5vw;
+  padding: 1rem 0.75rem;
+}
+
+.buy-now--header {
+  font-size: 1.125rem;
+  font-weight: 650;
+  line-height: 1.15;
+  margin: 0;
+}
+.card {
+  background-color: var(--ui-bg-bright);
+  border-radius: 0.5rem;
+  border: solid 1px var(--ui-bg-gradient-end);
+  overflow: hidden;
+  container-type: inline-size;
+  display: grid;
+  align-items: start;
+}
+.card__contents {
+  display: grid;
+  grid-auto-flow: row;
+  gap: 1rem;
+  height: 100%;
+  align-items: start;
+  grid-template-rows: max-content 1fr;
+}
+@container (min-width: 300px) {
+  .card__contents {
+    grid-auto-flow: column;
+  }
+}
+.card__image {
+  background-color: var(--ui-bg-secondary);
+  overflow: hidden;
+}
+.card__image img {
+  max-width: 100%;
+  object-fit: contain;
+}
+.card__content {
+  display: grid;
+  height: 100%;
+  justify-content: start;
+  padding: .75rem;
+}
+.card__bottom-align {
+  align-content: end;
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: space-between;
+  padding-block-start: .75rem;
+}
+.card__title {
+  margin: 0;
+  padding: 0;
+  line-height: 1.1;
+  align-content: center;
+}
+.card__description {
+  margin-top: 0;
+}
+
+.card__price {
+  font-size: 1.75rem;
+  font-weight: 925;
+  line-height: 1;
+  display: flex;
+}
+
+.card__price--currency {
+  font-size: .5em;
+  font-weight: 500;;
+}
+
+.card__price--decimal {
+  font-size: .5em;
+  font-weight: 500;
+}
+
+.card__button {
+  text-indent: -999em;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  border: solid 1px var(--ui-bg-gradient-end);
+  background: var(--ui-bg-primary-gradient);
+  display: flex;
+  align-items: center;
+  justify-items: center;
+  padding: 0;
+}
+
+.card__button:after {
+  content: '+';
+  text-indent: 0;
+  display: block;
+  font-weight: 600;
+  font-size: 2rem;
+  line-height: 1.7rem;
+  height: 2rem;
+  width: 2rem;
+  padding-left: 0.1rem;
+}
+
+figure:has(.image-shape-wrap) {
+  margin-top: 0;
+}
+
+.image-shape-wrap {
+  shape-image-threshold: .2; 
+  shape-margin: 1.5em; 
+  width: 32vw; 
+  display: block; 
+  margin-top: 2.5vh; 
+  padding-bottom: 0.5em;
+}
+.image-shape-wrap.left {
+  padding-right: 1vw; 
+}
+.image-shape-wrap.right {
+  padding-left: 1vw; 
+}
+@media screen and (min-width: 28em) {
+  .image-shape-wrap.left {
+    float: left; 
+  }
+  .image-shape-wrap.right {
+    float: right; 
+  }
+}
+
+.poster-slot {
+  margin: 0.5rem 0;
+  width: auto
+}
+
+.poster-slot--right {
+  float: none;
+}
+@media screen and (min-width: 40em) {
+  .poster-slot {
+    margin: 0.5rem 1rem;
+    width: 45vw;
+  }
+  .poster-slot--right {
+    float: right;
+    margin-left: 1rem;
+    margin-right: -2.5vw;
+  }
+}
+@media screen and (min-width: 45em) {
+  .poster-slot {
+    width: 35vw;
+  }
+  .poster-slot--right {
+    margin-right: -5vw;
+  }
+}
+@media screen and (min-width: 65em) {
+  .poster-slot {
+    width: 40vw;
+  }
+  .poster-slot--right {
+    margin-right: -10vw;
+  }
+}
+@media screen and (min-width: 80em) {
+  .poster-slot {
+    width: 45vw;
+  }
+  .poster-slot--right {
+    margin-right: -17.5vw;
+  }
+}
