@@ -737,7 +737,7 @@ body[data-speaker-layout=tall] #speaker-controls {
   font-weight: 600;
   opacity: 0;
   text-align: center;
-  width: 12vw;
+  width: 14vw;
   position: absolute;
   top: 17vh;
   left: 21.25vw;
@@ -851,17 +851,17 @@ body[data-speaker-layout=tall] #speaker-controls {
   opacity: 0;
   position: absolute;
   top: 61vh;
-  left: 62vw;
+  left: 27vw;
   z-index: 5;
 }
 .reveal .vf-collie .axis-xheight2 .diagram-line {
   position: absolute;
-  top: -19vh;
-  left: -2vw;
+  top: -20vh;
+  right: -2vw;
   width: 1vw;
   height: 45vh;
   border-bottom: solid 2px #fff;
-  border-right: solid 2px #fff;
+  border-left: solid 2px #fff;
   border-top: solid 2px #fff;
 }
 .reveal .vf-collie.varcol-xheight .axis-xheight2 {

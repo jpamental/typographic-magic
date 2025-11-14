@@ -497,7 +497,7 @@ body[data-speaker-layout="tall"] #speaker-controls {
       width: 12vw;
       position: absolute;
       top: 17vh;
-      left: 76.25vw;
+      left: 21.25vw;
       z-index: 5;
       .diagram-line {
         width: 100%;
@@ -518,8 +518,8 @@ body[data-speaker-layout="tall"] #speaker-controls {
       text-align: center;
       width: 9vw;
       position: absolute;
-      top: 28vh;
-      left: 39vw;
+      top: 35vh;
+      left: 46vw;
       z-index: 5;
       .diagram-line {
         width: 100%;
@@ -540,7 +540,7 @@ body[data-speaker-layout="tall"] #speaker-controls {
       width: 15vw;
       position: absolute;
       top: 85vh;
-      left: 72vw;
+      left: 18vw;
       z-index: 5;
       .diagram-line {
         position: absolute;
@@ -564,7 +564,7 @@ body[data-speaker-layout="tall"] #speaker-controls {
       width: 12vw;
       position: absolute;
       top: 85vh;
-      left: 38vw;
+      left: 48vw;
       z-index: 5;
       .diagram-line {
         position: absolute;
@@ -586,7 +586,7 @@ body[data-speaker-layout="tall"] #speaker-controls {
       opacity: 0;
       position: absolute;
       top: 52vh;
-      left: 55vw;
+      left: 1vw;
       z-index: 5;
       .diagram-line {
         position: absolute;
@@ -607,17 +607,17 @@ body[data-speaker-layout="tall"] #speaker-controls {
       font-variation-settings: 'YTLC' 550;
       opacity: 0;
       position: absolute;
-      top: 58vh;
-      left: 21vw;
+      top: 61vh;
+      left: 62vw;
       z-index: 5;
       .diagram-line {
         position: absolute;
-        top: -20vh;
-        right: -2vw;
+        top: -19vh;
+        left: -2vw;
         width: 1vw;
         height: 45vh;
         border-bottom: solid 2px #fff;
-        border-left: solid 2px #fff;
+        border-right: solid 2px #fff;
         border-top: solid 2px #fff;
       }
     }
