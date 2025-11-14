@@ -493,8 +493,33 @@
 				</section>
 				<section class="slide neuro">
 					<div class="contents">
-						<h1>Summary Slide</h1> 
-						<h2>sum up some stuff</h2>
+						<h1>By the numbers</h1> 
+						<div class="stat-grid">
+							<div class="lcp">
+								<label>Time to First Byte</label>
+								<div class="value">+26<span class="unit">%</span></div>
+							</div>
+							<div class="lcp">
+								<label>First contentful paint</label>
+								<div class="value">+37<span class="unit">%</span></div>
+							</div>
+							<div class="lcp">
+								<label>Largest contentful paint</label>
+								<div class="value">+44<span class="unit">%</span></div>
+							</div>
+							<div class="lcp">
+								<label>Cumulative layout shift</label>
+								<div class="value">+77<span class="unit">%</span></div>
+							</div>
+							<div class="lcp">
+								<label>Speed index</label>
+								<div class="value">+34<span class="unit">%</span></div>
+							</div>
+							<div class="lcp">
+								<label>Lighthouse</label>
+								<div class="value">100<span class="unit">s</span></div>
+							</div>
+						</div>
 					</div>
 					<aside class="notes">
 						<ul>
@@ -530,10 +555,15 @@
 			// More info about initialization & config:
 			// - https://revealjs.com/initialization/
 			// - https://revealjs.com/config/
+			var showControls = true;
+			if (window.location.hostname === 'localhost') {
+				var showControls = false;
+			}
 			Reveal.initialize({
 				disableLayout: true,
 				hash: true,
 				progress: false,
+				controls: showControls,
 
 				// Learn about plugins: https://revealjs.com/plugins/
 				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]

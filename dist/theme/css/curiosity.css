@@ -761,7 +761,7 @@ body[data-speaker-layout=tall] #speaker-controls {
   text-align: center;
   width: 9vw;
   position: absolute;
-  top: 32vh;
+  top: 35vh;
   left: 46vw;
   z-index: 5;
 }
